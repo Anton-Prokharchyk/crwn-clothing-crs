@@ -10,16 +10,13 @@ import eslintConfigPrettier from "eslint-config-prettier";
 export default defineConfig([
   globalIgnores(["dist"]),
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ["**/*.{ts,tsx,js,jsx}"],
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
-    plugins: {
-      prettier: eslintPluginPrettier,
-    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
