@@ -4,9 +4,9 @@ import { getRedirectResult } from "firebase/auth";
 import {
   auth,
   createUserDocumnetFromAuth,
-} from "../../../utils/firebase/firebase.utils";
-import { SignUpForm } from "../../sign-up-form/sign-up-form.component";
-import { SignInForm } from "../../sign-in-form/sign-in-form.component";
+} from "../../utils/firebase/firebase.utils";
+import { SignUpForm } from "../../components/sign-up-form/sign-up-form.component";
+import { SignInForm } from "../../components/sign-in-form/sign-in-form.component";
 
 import "./auth.styles.scss";
 

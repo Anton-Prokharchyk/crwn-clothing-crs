@@ -3,8 +3,12 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import Logo from "../../assets/react.svg?react";
 
 import "./header.styles.scss";
+import { UserContext } from "../../contexts/user.context";
+import { useContext } from "react";
 
 export const Header = () => {
+  const { currentUser } = useContext(UserContext);
+  console.log("cvurrentUser", currentUser);
   return (
     <>
       <header className="header max-width-container">
