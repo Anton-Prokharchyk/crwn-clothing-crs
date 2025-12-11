@@ -24,7 +24,7 @@ export const Header = () => {
               </NavLink>
             </li>
             <li className="nav-list__item">
-              <NavLink className="nav-list__item__link" to="/sign-in">
+              <NavLink className="nav-list__item__link" to="/auth">
                 sign in
               </NavLink>
             </li>
