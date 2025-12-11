@@ -1,14 +1,17 @@
+import { useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
+import { UserContext } from "../../contexts/user.context";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
 import Logo from "../../assets/react.svg?react";
 
 import "./header.styles.scss";
-import { UserContext } from "../../contexts/user.context";
-import { useContext } from "react";
-
 export const Header = () => {
   const { currentUser } = useContext(UserContext);
-  console.log("cvurrentUser", currentUser);
+
+  const handleSignOut = async () => {
+    await signOutUser();
+  };
   return (
     <>
       <header className="header max-width-container">
@@ -28,9 +31,15 @@ export const Header = () => {
               </NavLink>
             </li>
             <li className="nav-list__item">
-              <NavLink className="nav-list__item__link" to="/auth">
-                sign in
-              </NavLink>
+              {currentUser ? (
+                <span onClick={handleSignOut} className="nav-list__item__link">
+                  sign out
+                </span>
+              ) : (
+                <NavLink className="nav-list__item__link" to="/auth">
+                  sign in
+                </NavLink>
+              )}
             </li>
             <li className="nav-list__item">
               <NavLink className="nav-list__item__link" to="/shop-cart">

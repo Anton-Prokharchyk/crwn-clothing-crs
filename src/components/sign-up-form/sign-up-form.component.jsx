@@ -32,12 +32,12 @@ export const SignUpForm = () => {
     }
 
     try {
-      const isCreated = await createAuthUserWithEmailAndPassword(
+      const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password,
       );
 
-      await createUserDocumnetFromAuth(isCreated, { displayName });
+      await createUserDocumnetFromAuth(user, { displayName });
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         console.log("Cannot create user, email already in use");
