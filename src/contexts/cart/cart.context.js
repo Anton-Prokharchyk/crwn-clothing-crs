@@ -1,6 +1,9 @@
 import { createContext } from "react";
 
-export const CartDropdownContext = createContext({
+export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
+  cartItems: [],
+  addItemToCart: () => {},
+  cartItemCount: 0,
 });
