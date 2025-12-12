@@ -1,13 +1,18 @@
 import { useContext } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
-import { UserContext } from "../../contexts/user.context";
+import { UserContext } from "../../contexts/current-user/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import Logo from "../../assets/react.svg?react";
+import { CartIcon } from "../cart-icon/cart-icon.component";
+import { CartDropdown } from "../cart-dropdown/cart-dropdown.component";
+import { CartDropdownContext } from "../../contexts/cart/cart.context";
 
 import "./header.styles.scss";
+
 export const Header = () => {
   const { currentUser } = useContext(UserContext);
+  const { isCartOpen, setIsCartOpen } = useContext(CartDropdownContext);
 
   const handleSignOut = async () => {
     await signOutUser();
@@ -43,11 +48,12 @@ export const Header = () => {
             </li>
             <li className="nav-list__item">
               <NavLink className="nav-list__item__link" to="/shop-cart">
-                shop card icon
+                <CartIcon />
               </NavLink>
             </li>
           </ul>
         </nav>
+        {isCartOpen && <CartDropdown />}
       </header>
       <Outlet />
     </>
