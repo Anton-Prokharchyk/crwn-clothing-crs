@@ -1,18 +1,13 @@
-import { CategoryItem } from "../category-item/category-item.component";
+import { DirectoryItem } from "../directory-item/directory-item.component";
 
 import "./directory.styles.scss";
 
-export const Directory = ({ data }) => {
+export const Directory = ({ categories }) => {
   return (
-    <>
-      <section className="categories max-width-container">
-        <h1>Categories</h1>
-        <div className="categories-container">
-          {data.map((e) => {
-            return <CategoryItem id={e.id} img={e.img} category={e.category} />;
-          })}
-        </div>
-      </section>
-    </>
+    <div className="directory-container">
+      {categories.map((category) => (
+        <DirectoryItem key={category.id} category={category} />
+      ))}
+    </div>
   );
 };

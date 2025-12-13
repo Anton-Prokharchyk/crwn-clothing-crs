@@ -12,14 +12,14 @@ import "./header.styles.scss";
 
 export const Header = () => {
   const { currentUser } = useContext(UserContext);
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { isCartOpen } = useContext(CartContext);
 
   const handleSignOut = async () => {
     await signOutUser();
   };
   return (
     <>
-      <header className="header max-width-container">
+      <header className="header">
         <Link className="logo-container" to="/">
           <Logo className="logo" />
         </Link>
