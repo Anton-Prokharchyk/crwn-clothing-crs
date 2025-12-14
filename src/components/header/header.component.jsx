@@ -1,14 +1,19 @@
 import { useContext } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 import { UserContext } from "../../contexts/current-user/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-import Logo from "../../assets/react.svg?react";
 import { CartIcon } from "../cart-icon/cart-icon.component";
 import { CartDropdown } from "../cart-dropdown/cart-dropdown.component";
 import { CartContext } from "../../contexts/cart/cart.context";
 
-import "./header.styles.scss";
+import {
+  LogoContainerLink,
+  NavigationLink,
+  NavigationList,
+  StyledHeader,
+  StyledLogo,
+} from "./header.styles.jsx";
 
 export const Header = () => {
   const { currentUser } = useContext(UserContext);
@@ -19,42 +24,36 @@ export const Header = () => {
   };
   return (
     <>
-      <header className="header">
-        <Link className="logo-container" to="/">
-          <Logo className="logo" />
-        </Link>
+      <StyledHeader>
+        <LogoContainerLink to="/">
+          <StyledLogo />
+        </LogoContainerLink>
         <nav className="nav-container">
-          <ul className="nav-list">
+          <NavigationList>
             <li className="nav-list__item">
-              <NavLink className="nav-list__item__link" to="/shop">
-                shop
-              </NavLink>
+              <NavigationLink to="/shop">shop</NavigationLink>
             </li>
             <li className="nav-list__item">
-              <NavLink className="nav-list__item__link" to="/contact">
-                contact
-              </NavLink>
+              <NavigationLink to="/contact">contact</NavigationLink>
             </li>
             <li className="nav-list__item">
               {currentUser ? (
-                <span onClick={handleSignOut} className="nav-list__item__link">
+                <NavigationLink as={"span"} onClick={handleSignOut}>
                   sign out
-                </span>
+                </NavigationLink>
               ) : (
-                <NavLink className="nav-list__item__link" to="/auth">
-                  sign in
-                </NavLink>
+                <NavigationLink to="/auth">sign in</NavigationLink>
               )}
             </li>
             <li className="nav-list__item">
-              <NavLink className="nav-list__item__link">
+              <NavigationLink>
                 <CartIcon />
-              </NavLink>
+              </NavigationLink>
             </li>
-          </ul>
+          </NavigationList>
         </nav>
         {isCartOpen && <CartDropdown />}
-      </header>
+      </StyledHeader>
       <Outlet />
     </>
   );

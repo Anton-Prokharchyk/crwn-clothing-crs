@@ -1,9 +1,12 @@
 import { useState } from "react";
 
 import { FormInput } from "../form-input/form-input.component";
-import { Button } from "../button/button.component";
-
-import "./sign-in-form.styles.scss";
+import { Button, BUTTON_TYPE_CLASSES } from "../button/button.component";
+import {
+  ButtonsContainer,
+  SignInContainer,
+  Title,
+} from "./sign-in-form.styles.jsx";
 import {
   createUserDocumnetFromAuth,
   signInAuthWithEmailAndPassword,
@@ -26,7 +29,6 @@ export const SignInForm = () => {
     try {
       const { user } = await signInAuthWithEmailAndPassword(email, password);
       resetFormFields();
-      console.log(user);
     } catch (error) {
       switch (error.code) {
         case "auth/wrong-password":
@@ -51,8 +53,8 @@ export const SignInForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
   return (
-    <div className="sign-in-container">
-      <h2>Sign In Form</h2>
+    <SignInContainer>
+      <Title>Sign In Form</Title>
       <p>Sign in with email and password</p>
       <form
         onSubmit={(event) => {
@@ -76,17 +78,17 @@ export const SignInForm = () => {
           required
           name="password"
         />
-        <div className="buttons-container">
+        <ButtonsContainer>
           <Button type="submit">Sign In</Button>
           <Button
-            buttonType={"google"}
+            buttonType={BUTTON_TYPE_CLASSES.google}
             type="button"
             onClick={signInWithGoogle}
           >
             Sign In With Google
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };

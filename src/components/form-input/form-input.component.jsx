@@ -1,15 +1,19 @@
-import "./form-input.styles.scss";
+import {
+  FormInputLabel,
+  FormInputWrapper,
+  Input,
+} from "./form-input.styles.jsx";
 
 export const FormInput = ({ label, ...otherProps }) => {
   return (
-    <div className="form-input-wrapper">
-      <input className="form-input" {...otherProps} />
-      <label
-        className={`form-input-label ${otherProps.value ? "shrink" : ""}`}
+    <FormInputWrapper>
+      <Input {...otherProps} />
+      <FormInputLabel
+        shrink={otherProps.value.length}
         htmlFor={otherProps.name}
       >
         {label}
-      </label>
-    </div>
+      </FormInputLabel>
+    </FormInputWrapper>
   );
 };

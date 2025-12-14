@@ -7,30 +7,22 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import { SignUpForm } from "../../components/sign-up-form/sign-up-form.component";
 import { SignInForm } from "../../components/sign-in-form/sign-in-form.component";
-
-import "./auth.styles.scss";
+import { AuthContainer } from "./auth.styles.jsx";
 
 export const Auth = () => {
-  // const logGoogleRedirectUser = async () => {
-  //   const { user } = await signInWithGoogleRedirect();
-  //   const userDocRef = await createUserDocumnetFromAuth(user);
-  //   console.log("userdocref redirect", userDocRef);
-  // };
-
   useEffect(() => {
     (async () => {
       const response = await getRedirectResult(auth);
       if (response) {
         const userDocRef = await createUserDocumnetFromAuth(response.user);
       }
-      console.log("response", response);
     })();
   }, []);
 
   return (
-    <div className="auth-container">
+    <AuthContainer>
       <SignInForm />
       <SignUpForm />
-    </div>
+    </AuthContainer>
   );
 };
