@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import { UserContext } from "../../contexts/current-user/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { CartIcon } from "../cart-icon/cart-icon.component";
 import { CartDropdown } from "../cart-dropdown/cart-dropdown.component";
@@ -14,9 +14,10 @@ import {
   StyledHeader,
   StyledLogo,
 } from "./header.styles.jsx";
+import { selectCurrentUser } from "../../store/user/user.selectot.js";
 
 export const Header = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
 
   const handleSignOut = async () => {
